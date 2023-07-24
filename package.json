@@ -1,0 +1,12 @@
+{
+  "name": "invoice-pdf-parser",
+  "version": "1.0.0",
+  "description": "Reads PDF data an send it to a database",
+  "main": "index.js",
+  "repository": "git@github.com:henriqueyun/invoice-pdf-parser.git",
+  "author": "henriqueyun",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.45.0"
+  }
+}
