@@ -6,7 +6,14 @@
   "repository": "git@github.com:henriqueyun/invoice-pdf-parser.git",
   "author": "henriqueyun",
   "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
   "devDependencies": {
     "eslint": "^8.45.0"
+  },
+  "dependencies": {
+    "pdf2json": "^3.0.4"
   }
 }

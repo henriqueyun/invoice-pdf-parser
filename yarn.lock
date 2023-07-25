@@ -79,6 +79,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@xmldom/xmldom@^0.8.6":
+  version "0.8.10"
+  resolved "https://registry.yarnpkg.com/@xmldom/xmldom/-/xmldom-0.8.10.tgz#a1337ca426aa61cef9fe15b5b28e340a72f6fa99"
+  integrity sha512-2WALfTl4xo2SkGCYRt6rDTFfk9R1czmBvUQy12gK2KuRKIpWEhcbbzy8EZXtz/jkRqHX8bFEc6FC1HjX4TUWYw==
+
 acorn-jsx@^5.3.2:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.3.2.tgz#7ed5bb55908b3b2f1bc55c6af1653bada7f07937"
@@ -533,6 +538,13 @@ path-key@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-3.1.1.tgz#581f6ade658cbba65a0d3380de7753295054f375"
   integrity sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==
+
+pdf2json@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/pdf2json/-/pdf2json-3.0.4.tgz#8508800c8d07e4778d4247de4de49a7b641aa040"
+  integrity sha512-NKmSg78W5V/T3Qvp+TPkYeARdP/XzxBTlhRGdDMrOI1beyI72JxW5u4yy5825ge3opzu4HF0xDgg+HZbYvbr4g==
+  dependencies:
+    "@xmldom/xmldom" "^0.8.6"
 
 prelude-ls@^1.2.1:
   version "1.2.1"
