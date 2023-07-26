@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 const {
   Model
-} = require('sequelize');
+} = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Item extends Model {
     /**
@@ -9,9 +9,6 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      // define association here
-    }
   }
   Item.init({
     invoice: DataTypes.NUMBER,
@@ -22,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     energyPrice: DataTypes.NUMBER
   }, {
     sequelize,
-    modelName: 'Item',
+    modelName: "Item",
   });
   return Item;
 };

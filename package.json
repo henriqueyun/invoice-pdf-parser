@@ -10,7 +10,8 @@
   "scripts": {
     "start": "node index.js",
     "db:create": "npx sequelize-cli db:create",
-    "db:migrate": "npx sequelize-cli db:migrate"
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:drop": "npx sequelize-cli db:drop"
   },
   "devDependencies": {
     "eslint": "^8.45.0"
