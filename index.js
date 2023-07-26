@@ -5,14 +5,23 @@ import parser from "./parser.js";
 import { FILENAME, LINEBREAK } from "./constants.js";
 
 function createInvoiceFile() {
-    const pdfParser = new PDFParser(this, 1);
-
-    pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError));
-    pdfParser.on("pdfParser_dataReady", async () => {
-        await fs.writeFile(FILENAME, pdfParser.getRawTextContent());
+    return new Promise((resolve, reject) => {
+        const pdfParser = new PDFParser(this, 1);
+    
+        pdfParser.on("pdfParser_dataError", errData => {
+            console.error(errData.parserError);
+            reject(errData);
+        });
+        pdfParser.on("pdfParser_dataReady", async (pdfData) => {
+            if (pdfData) {
+                await fs.writeFile(FILENAME, pdfParser.getRawTextContent());
+                return;
+            }
+            resolve();
+        });
+        pdfParser.loadPDF("./invoices/3004298116-05-2023.pdf");
+        
     });
-
-    pdfParser.loadPDF("./invoices/3004298116-05-2023.pdf");
 }
 
 async function parseInvoiceFile() {
@@ -26,11 +35,15 @@ async function parseInvoiceFile() {
         const energyWithoutICMS = parser.parseProduct(data, "En comp. s/ ICMS", 3);
         const injectedHFPElenergy = parser.parseProduct(data, "Energia injetada HFP", 4);
 
-        return {client, invoice, energy, energyWithoutICMS, injectedHFPElenergy};
+        return { client, invoice, energy, energyWithoutICMS, injectedHFPElenergy };
     } catch (err) {
         console.error(err);
     }
 }
 
-createInvoiceFile();
-parseInvoiceFile();
+async function parse() {
+    await createInvoiceFile();
+    await parseInvoiceFile();
+}
+
+parse();
