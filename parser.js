@@ -1,4 +1,4 @@
-import { WHITESPACE } from "./constants.js";
+const WHITESPACE = /\s+/;
 
 function parseClient(data) {
     const client = {};
