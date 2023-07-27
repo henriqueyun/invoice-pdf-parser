@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     customer: DataTypes.NUMBER,
     monthReference: DataTypes.STRING,
     dueDate: DataTypes.DATE,
-    streetLighthingContribuition: DataTypes.NUMBER,
+    streetLigthingContribution: DataTypes.NUMBER,
     totalPrice: DataTypes.NUMBER
   }, {
     sequelize,

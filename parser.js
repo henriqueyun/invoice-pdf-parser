@@ -1,32 +1,54 @@
 const WHITESPACE = /\s+/;
 
-function parseClient(data) {
-    const client = {};
-    client.name = data[30];
-    client.cpfFragment = data[34].split(WHITESPACE)[1];
-    client.clientId = data[35].split(WHITESPACE)[data[35].split(WHITESPACE).length - 2];
-    return client;
+function parseCustomer(data, { isFileInLatestFormat } = { isFileInLatestFormat: true }) {
+
+    const lineNumber = {
+        name: isFileInLatestFormat ? 30 : 29,
+        cpfFragment: isFileInLatestFormat ? 34 : 33,
+        id: isFileInLatestFormat ? 35 : 34,
+    };
+
+    const customer = {};
+    customer.name = data[lineNumber.name];
+    customer.cpfFragment = data[lineNumber.cpfFragment].split(WHITESPACE)[1];
+    customer.id = data[lineNumber.id].split(WHITESPACE)[data[lineNumber.id].split(WHITESPACE).length - 2];
+    return customer;
 }
 
-function parseInvoice(data) {
+function parseInvoice(data, { isFileInLatestFormat } = { isFileInLatestFormat: true }) {
+    const lineNumber = {
+        datesAndPrice: isFileInLatestFormat ? 37 : 36,
+        streetLigthingContribution: 5
+    };
+
     const invoice = {};
-    invoice.monthReference = data[37].split(WHITESPACE)[1];
-    invoice.dueDate = data[37].split(WHITESPACE)[2];
-    invoice.totalPrice = data[37].split(WHITESPACE)[2];
-    invoice.streetLigthingContribution = data[5].split("Contrib Ilum Publica Municipal")[1].trim();
+    invoice.monthReference = data[lineNumber.datesAndPrice].split(WHITESPACE)[1];
+    invoice.dueDate = data[lineNumber.datesAndPrice].split(WHITESPACE)[2];
+    invoice.totalPrice = data[lineNumber.datesAndPrice].split(WHITESPACE)[3];
+    invoice.streetLigthingContribution = data[lineNumber.streetLigthingContribution].split("Contrib Ilum Publica Municipal")[1].trim();
     return invoice;
 }
 
-function parseProduct(data, productName, index) {
-    const line = data[index].split(productName).slice(1).join("");
+function parseProduct(data, index) {
+    const productName = data[index].split("kWh")[0];
+    const numericValues = data[index].split(WHITESPACE).slice(-5);
+    
     const product = {};
-    product.id = productName;
-    product.energyUnity = line.split(WHITESPACE)[0];
-    product.energyUnityPrice = line.split(WHITESPACE)[1];
-    product.energyUnity = line.split(WHITESPACE)[2];
-    product.energyPrice = line.split(WHITESPACE)[3];
-    product.unitTax = line.split(WHITESPACE)[4];
+    product.product = productName;
+    product.energyUnit = `${numericValues[0]}kWh`;
+    product.energyUnitPrice = numericValues[1];
+    product.energyPrice = numericValues[2];
+    product.unitTax = numericValues[3];
     return product;
 }
 
-export default { parseClient, parseInvoice, parseProduct };
+function parseFile (data, isFileInLatestFormat) {
+    const customer = parseCustomer(data, { isFileInLatestFormat });
+    const invoice = parseInvoice(data, { isFileInLatestFormat });
+
+    const energyA = parseProduct(data, 2);
+    const energyB = parseProduct(data, 3);
+    const energyC = parseProduct(data, 4);
+    return { customer, invoice, energyA, energyB, energyC };
+}
+export default { parseFile };

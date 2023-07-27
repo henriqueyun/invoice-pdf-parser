@@ -5,12 +5,12 @@ module.exports = {
     await queryInterface.createTable("Invoices", {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
+        autoIncrement: true,
         type: Sequelize.INTEGER
       },
       customer: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         references: {
           model: "Customers",
           key: "id",
@@ -22,7 +22,7 @@ module.exports = {
       dueDate: {
         type: Sequelize.DATE
       },
-      streetLighthingContribuition: {
+      streetLigthingContribution: {
         type: Sequelize.DECIMAL(8,2)
       },
       totalPrice: {

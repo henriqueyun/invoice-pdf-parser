@@ -1,12 +1,12 @@
 "use strict";
-/** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Items", {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
+        autoIncrement: true,
         type: Sequelize.INTEGER
       },
       invoice: {
@@ -17,23 +17,19 @@ module.exports = {
         },
       },
       product: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Products",
-          key: "id",
-        },
+        type: Sequelize.STRING,
       },
       energyUnit: {
-        type: Sequelize.CHAR(3)
+        type: Sequelize.STRING
       },
-      energyUnityPrice: {
-        type: Sequelize.DECIMAL(1,8)
+      energyUnitPrice: {
+        type: Sequelize.DECIMAL(9,8)
       },
       unitTax: {
-        type: Sequelize.DECIMAL(1,8)
+        type: Sequelize.DECIMAL(9,8)
       },
       energyPrice: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL(8,2)
       },
       createdAt: {
         allowNull: false,
