@@ -6,6 +6,7 @@ async function insertIntoDatabase() {
     try {
         const invoices = await batch.parseAllFiles();
         await Promise.all(invoices.map(async (data) => {
+            
             if (!(await Customer.findByPk(data.customer.id))) {
                 const customer = Customer.build({ ...data.customer });
                 try {
