@@ -24,7 +24,7 @@ async function insertIntoDatabase() {
                 ...data.invoice,
                 totalPrice: parseFloat(data.invoice.totalPrice.replace(",", ".")),
                 streetLigthingContribution: parseFloat(data.invoice.streetLigthingContribution.replace(",", ".")),
-                customer: data.customer.id
+                customerId: data.customer.id
             });
             await invoice.save();
 
@@ -33,7 +33,7 @@ async function insertIntoDatabase() {
                 energyPrice: parseFloat(data.energyA.energyPrice.replace(",", ".")),
                 energyUnitPrice: parseFloat(data.energyA.energyUnitPrice.replace(",", ".")),
                 unitTax: parseFloat(data.energyA.unitTax.replace(",", ".")),
-                invoice: invoice.id
+                invoiceId: invoice.id
             });
             await energyA.save();
 
@@ -42,7 +42,7 @@ async function insertIntoDatabase() {
                 energyPrice: parseFloat(data.energyB.energyPrice.replace(",", ".")),
                 energyUnitPrice: parseFloat(data.energyB.energyUnitPrice.replace(",", ".")),
                 unitTax: parseFloat(data.energyB.unitTax.replace(",", ".")),
-                invoice: invoice.id
+                invoiceId: invoice.id
             });
             await energyB.save();
 
@@ -51,7 +51,7 @@ async function insertIntoDatabase() {
                 energyPrice: parseFloat(data.energyC.energyPrice.replace(",", ".")),
                 energyUnitPrice: parseFloat(data.energyC.energyUnitPrice.replace(",", ".")),
                 unitTax: parseFloat(data.energyC.unitTax.replace(",", ".")),
-                invoice: invoice.id
+                invoiceId: invoice.id
             });
             await energyC.save();
 

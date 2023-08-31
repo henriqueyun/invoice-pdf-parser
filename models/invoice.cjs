@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Invoice.init({
-    customer: DataTypes.NUMBER,
+    customerId: DataTypes.NUMBER,
     monthReference: DataTypes.STRING,
     dueDate: DataTypes.DATE,
     streetLigthingContribution: DataTypes.NUMBER,
