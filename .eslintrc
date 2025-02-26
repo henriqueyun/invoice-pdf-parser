@@ -3,7 +3,8 @@
     "env": {
         "browser": true,
         "node": true,
-        "jest": true
+        "jest": true,
+        "es2021": true
     },
     "rules": {
         "quotes": [
@@ -16,6 +17,7 @@
         ]
     },
     "parserOptions": {
-        "ecmaVersion": "latest"
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     }
 }
